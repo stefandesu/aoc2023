@@ -5,5 +5,4 @@ https://adventofcode.com/2023
 - [Day 2: Cube Conundrum](./02/README.md)
 
 ## To-Dos
-- [ ] Find better solution for reading files line-by-line
 - [ ] Properly use TypeScript at some places instead of resorting to `any`

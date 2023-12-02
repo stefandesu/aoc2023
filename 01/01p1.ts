@@ -1,11 +1,9 @@
-
+import { readLines } from "../utils.ts"
 const isTest = Deno.args[0] === "test"
 
-const input = await Deno.readTextFile(`./${isTest ? "test1" : "input"}.txt`)
 let sum = 0
 
-// TODO: Reading the whole file, then splitting it is not very efficient...
-for (const line of input.split("\n").filter(Boolean)) {
+for await (const line of readLines(`./${isTest ? "test1" : "input"}.txt`)) {
   let [_, firstDigit, lastDigit] = line.match(/^\D*(\d).*?(\d)?\D*$/) || []
   if (firstDigit === undefined) {
     throw new Error(`Something wrong in line ${line}`)

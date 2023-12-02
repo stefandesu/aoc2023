@@ -1,7 +1,6 @@
-
+import { readLines } from "../utils.ts"
 const isTest = Deno.args[0] === "test"
 
-const input = await Deno.readTextFile(`./${isTest ? "test2" : "input"}.txt`)
 let sum = 0
 // TODO: Use proper TypeScript lol
 const numberStrings:any = {
@@ -16,8 +15,7 @@ const numberStrings:any = {
   nine: 9,
 }
 
-// TODO: Reading the whole file, then splitting it is not very efficient...
-for (const line of input.split("\n").filter(Boolean)) {
+for await (const line of readLines(`./${isTest ? "test2" : "input"}.txt`)) {
   // TODO: Is it possible to do it in a singular regex? (I had trouble making it work with greedy/lazy matching correctly)
   // TODO: Also, we can use `numberStrings` above for the written-out numbers instead of repeating them here
   let [_a, firstDigit] = line.match(/^.*?(one|two|three|four|five|six|seven|eight|nine|\d)/) || []

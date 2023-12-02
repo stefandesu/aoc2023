@@ -1,11 +1,10 @@
+import { readLines } from "../utils.ts"
 const isTest = Deno.args[0] === "test"
 const testResult = 2286
 
-const input = await Deno.readTextFile(`./${isTest ? "test" : "input"}.txt`)
-
 let sum = 0
 
-for (const line of input.split("\n").filter(Boolean)) {
+for await (const line of readLines(`./${isTest ? "test" : "input"}.txt`)) {
   const [_, content] = line.match(/^Game \d+:(.*)$/) || []
   if (!content) {
     throw new Error(`Issue on line ${line}.`)
